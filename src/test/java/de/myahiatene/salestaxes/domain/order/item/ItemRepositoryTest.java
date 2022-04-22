@@ -1,7 +1,5 @@
-package de.myahiatene.salestaxes.domain.order;
+package de.myahiatene.salestaxes.domain.order.item;
 
-import de.myahiatene.salestaxes.domain.order.Item;
-import de.myahiatene.salestaxes.domain.order.ItemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +22,10 @@ class ItemRepositoryTest {
     @Test
     void checkIfItemFoundByName() {
         //given
-        Item item = new Item("Buch", false, false, BigDecimal.ONE, BigDecimal.TEN);
+        final Item item = new Item("Buch", 4, false, false, BigDecimal.ONE, null, BigDecimal.TEN);
         itemRepository.save(item);
         //when
-        Item foundItem = itemRepository.findItemByName("Buch");
+        final Item foundItem = itemRepository.findItemByName("Buch");
 
         //then
         assertThat(foundItem).isEqualTo(item);
@@ -36,11 +34,23 @@ class ItemRepositoryTest {
     @Test
     void checkIfItemNotFoundByName() {
         //given
-        Item item = new Item("Buch", false, false, BigDecimal.ONE, BigDecimal.TEN);
+        // Item item = new Item("Buch", false, false, BigDecimal.ONE, BigDecimal.TEN);
 
         //when
-        Item foundItem = itemRepository.findItemByName("Buch");
+        final Item foundItem = itemRepository.findItemByName("Buch");
 
+        //then
+        assertThat(foundItem).isNull();
+    }
+
+    @Test
+    void checkIfItemDeleted() {
+        //given
+        final Item item = new Item("Buch", 1, false, false, BigDecimal.ONE, null, BigDecimal.TEN);
+        itemRepository.save(item);
+        //when
+        itemRepository.deleteItemByName("Buch");
+        final Item foundItem = itemRepository.findItemByName("Buch");
         //then
         assertThat(foundItem).isNull();
     }

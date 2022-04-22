@@ -1,8 +1,8 @@
-package de.myahiatene.salestaxes.domain.order;
+package de.myahiatene.salestaxes.domain.order.item;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CollectionId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +11,14 @@ import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Item {
     @Id
     @Column
     private String name;
+    @Column
+    private int amount;
     @Column
     private boolean basicTax;
     @Column
@@ -25,16 +28,10 @@ public class Item {
     private BigDecimal price;
 
     @Column
+    private BigDecimal salesTaxes;
+
+    @Column
     private BigDecimal priceWithTax;
-
-
-    public Item(String name, boolean basicTax, boolean importTax, BigDecimal price, BigDecimal priceWithTax) {
-        this.name = name;
-        this.basicTax = basicTax;
-        this.importTax = importTax;
-        this.price = price;
-        this.priceWithTax = priceWithTax;
-    }
 
 
 }

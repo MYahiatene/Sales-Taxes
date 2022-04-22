@@ -1,4 +1,4 @@
-package de.myahiatene.salestaxes.domain.order;
+package de.myahiatene.salestaxes.domain.order.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,10 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, String> {
 
-public Item findItemByName(String name);
-public List<Item> findAll();
+    Item findItemByName(String name);
+
+    @Override
+    List<Item> findAll();
+
+    void deleteItemByName(String name);
 }

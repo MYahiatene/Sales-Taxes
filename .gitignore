@@ -300,3 +300,5 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
+node/
+data/
