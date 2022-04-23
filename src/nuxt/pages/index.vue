@@ -139,7 +139,7 @@ export default {
         totalPrice: 0.00,
         basketItem: {},
         text: "Error! Wrong Input!",
-        inputRules: [v => v.length > 0, v => v.split(" ").length >= 3, v => Number.isInteger(Number(v.split(" ")[0]))
+        inputRules: [v => v.length > 0, v => v.split(" ").filter(el => /\S/.test(el)).length > 3, v => Number.isInteger(Number(v.split(" ")[0]))
 
         ],
 
@@ -154,12 +154,13 @@ export default {
         },
         async addItem(input) {
             if (this.valid) {
-                const inputArr = input.split(" ");
+                input = input.trim();
+                const inputArr = input.split(" ").filter(el => /\S/.test(el));
                 const amount = inputArr[0];
                 const importTax = !!input.includes("imported");
                 const basicTax = this.checkIfBasicTax(input)
                 const price = inputArr[inputArr.length - 1]
-                let name = input.split(" ")
+                let name = input.split(" ").filter(el => /\S/.test(el));
                 name.splice(0, 1)
                 name.pop()
                 name = name.filter(el => el !== "at")
@@ -169,14 +170,14 @@ export default {
                 const response = await this.$axios.post("/addItem", item);
                 const values = response.data;
                 this.items.push(this.createBasketItem(values));
-                this.totalSalesTax = Number(Math.round((this.totalSalesTax + values.salesTaxes) + "e2") + "e-2");
-                this.totalPrice = Number(Math.round((this.totalPrice + values.priceWithTax) + "e2") + "e-2");
+                this.totalSalesTax = Number(Math.round((this.totalSalesTax + values.amount * values.salesTaxes) + "e2") + "e-2");
+                this.totalPrice = Number(Math.round((this.totalPrice + values.amount * values.priceWithTax) + "e2") + "e-2");
             } else {
                 this.snackbar = true;
             }
         },
         createBasketItem(item) {
-            const basketItem = `${item.amount} ${item.importTax ? "imported" : ""} ${item.name}: ${item.priceWithTax.toFixed(2)}`
+            const basketItem = `${item.amount} ${item.importTax ? "imported" : ""} ${item.name}: ${item.amount * item.priceWithTax.toFixed(2)}`
             return basketItem;
         }
         ,
