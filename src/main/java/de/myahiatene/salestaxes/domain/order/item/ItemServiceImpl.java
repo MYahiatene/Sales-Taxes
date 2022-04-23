@@ -66,7 +66,7 @@ public class ItemServiceImpl implements ItemService {
         return itemRepository.findAll();
     }
 
-
+    @Override
     public Map<Item, Double> createReceipt() {
         List<Item> items = itemRepository.findAll();
         Map<Item, Double> basket = new HashMap<>();

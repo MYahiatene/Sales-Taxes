@@ -47,6 +47,25 @@
 
 
                                 </v-list-item>
+                                <v-list-item>
+
+                                    <v-list-item-content v-show="totalSalesTax!==0.00" v-model="totalSalesTax">
+                                        <div class="text-h5 black--text mb-1">
+                                            Sales Taxes:{{ totalSalesTax }}
+                                        </div>
+
+                                    </v-list-item-content>
+
+
+                                </v-list-item>
+                                <v-list-item>
+                                    <v-list-item-content v-show="totalPrice!==0.00" v-model="totalPrice">
+                                        <div class="text-h5 black--text mb-1">
+                                            Total:{{ totalPrice }}
+                                        </div>
+
+                                    </v-list-item-content>
+                                </v-list-item>
                                 <v-card-actions>
                                     <v-container fluid>
                                         <v-form ref="form" v-model="valid">
@@ -64,7 +83,7 @@
                                         text
                                         class="blue-grey"
 
-                                        @click="addItem()"
+                                        @click="addItem(input)"
                                     >
                                         Add item to basket
                                     </v-btn>
@@ -94,7 +113,17 @@
                     </template>
                 </v-snackbar>
             </div>
+            <v-container>
+                <v-row>
+                    <v-spacer></v-spacer>
+                    <v-btn @click="deleteBasket">Delete Basket</v-btn>
+                    <v-spacer></v-spacer>
+                </v-row>
+
+            </v-container>
+
         </v-main>
+
     </v-app>
 </template>
 
@@ -106,21 +135,56 @@ export default {
         valid: false,
         snackbar: false,
         timeout: 1500,
+        totalSalesTax: 0.00,
+        totalPrice: 0.00,
+        basketItem: {},
         text: "Error! Wrong Input!",
         inputRules: [v => v.length > 0, v => v.split(" ").length >= 3, v => Number.isInteger(Number(v.split(" ")[0]))
 
         ],
 
     }),
+    created() {
+        this.$axios.defaults.baseURL = 'http://localhost:8088/v1/api';
+    },
     methods: {
-        addItem() {
+        checkIfBasicTax(input) {
+            return !(input.includes("book") || input.includes("pills") || input.includes("chocolate"))
+
+        },
+        async addItem(input) {
             if (this.valid) {
-                this.items.push(this.input.replace(" at ", ": "));
+                const inputArr = input.split(" ");
+                const amount = inputArr[0];
+                const importTax = !!input.includes("imported");
+                const basicTax = this.checkIfBasicTax(input)
+                const price = inputArr[inputArr.length - 1]
+                let name = input.split(" ")
+                name.splice(0, 1)
+                name.pop()
+                name = name.filter(el => el !== "at")
+                name = name.filter(el => el !== "imported")
+                name = name.join(" ")
+                const item = {name, amount, basicTax, importTax, price};
+                const response = await this.$axios.post("/addItem", item);
+                const values = response.data;
+                this.items.push(this.createBasketItem(values));
+                this.totalSalesTax = Number(Math.round((this.totalSalesTax + values.salesTaxes) + "e2") + "e-2");
+                this.totalPrice = Number(Math.round((this.totalPrice + values.priceWithTax) + "e2") + "e-2");
             } else {
                 this.snackbar = true;
             }
+        },
+        createBasketItem(item) {
+            const basketItem = `${item.amount} ${item.importTax ? "imported" : ""} ${item.name}: ${item.priceWithTax.toFixed(2)}`
+            return basketItem;
         }
         ,
+        deleteBasket() {
+            this.totalPrice = 0.00;
+            this.totalSalesTax = 0.00;
+            this.items = []
+        },
     }
     ,
 }

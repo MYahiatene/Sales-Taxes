@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.myahiatene.salestaxes.domain.order.dto.ItemDTO;
 import de.myahiatene.salestaxes.domain.order.item.ItemServiceImpl;
+import de.myahiatene.salestaxes.domain.order.item.Item;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,10 +19,11 @@ public class ItemController {
     }
 
     @PostMapping("/addItem")
-    public String createItem(final @RequestBody ItemDTO itemDTO) {
-        itemServiceImpl.addItem(itemDTO.getName(),
+    public Item createItem(final @RequestBody ItemDTO itemDTO) {
+    System.out.println(itemDTO);
+       Item item= itemServiceImpl.addItem(itemDTO.getName(),
             itemDTO.getAmount(), itemDTO.isBasicTax(), itemDTO.isImportTax(), itemDTO.getPrice());
-        return "";
+        return item;
     }
 
     @GetMapping("/createReceipt")
