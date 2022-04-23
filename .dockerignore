@@ -1,0 +1,6 @@
+target/
+dist/
+node/
+node_modules/
+.nuxt/
+.idea

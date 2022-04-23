@@ -139,6 +139,7 @@ export default {
         totalPrice: 0.00,
         basketItem: {},
         text: "Error! Wrong Input!",
+        axiosErr: "Something went wrong contacting the Server!",
         inputRules: [v => v.length > 0, v => v.split(" ").filter(el => /\S/.test(el)).length > 3, v => Number.isInteger(Number(v.split(" ")[0]))
 
         ],
@@ -177,16 +178,17 @@ export default {
             }
         },
         createBasketItem(item) {
-            const basketItem = `${item.amount} ${item.importTax ? "imported" : ""} ${item.name}: ${item.amount * item.priceWithTax.toFixed(2)}`
+            const basketItem = `${item.amount} ${item.importTax ? "imported" : ""}
+            ${item.name}: ${item.amount * item.priceWithTax.toFixed(2)}`
             return basketItem;
         }
         ,
-        deleteBasket() {
+        async deleteBasket() {
             this.totalPrice = 0.00;
             this.totalSalesTax = 0.00;
             this.items = []
             this.input = "";
-            this.$axios("/deleteBasket");
+            await this.$axios("/deleteBasket");
         },
     }
     ,

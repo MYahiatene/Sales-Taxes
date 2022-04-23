@@ -762,6 +762,7 @@
 
                             <arguments>install</arguments>
 
+
                         </configuration>
 
                     </execution>
@@ -770,7 +771,7 @@
 
                     <execution>
 
-                        <id>npm run build</id>
+                        <id>npm run dev</id>
 
                         <goals>
 
@@ -780,7 +781,8 @@
 
                         <configuration>
 
-                            <arguments>run build</arguments>
+                            <arguments>run dev</arguments>
+
 
                         </configuration>
 
