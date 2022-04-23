@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -67,16 +65,9 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Map<Item, Double> createReceipt() {
-        List<Item> items = itemRepository.findAll();
-        Map<Item, Double> basket = new HashMap<>();
-        for (Item item : items) {
-            BigDecimal amount = BigDecimal.valueOf(item.getAmount());
-            BigDecimal priceWithTax = item.getPriceWithTax();
-            BigDecimal basketItemPrice = priceWithTax.multiply(amount).setScale(2, RoundingMode.HALF_UP);
-            basket.put(item, basketItemPrice.doubleValue());
-        }
-        return basket;
+    public void deleteBasket() {
+        itemRepository.deleteAll();
+
     }
 
 

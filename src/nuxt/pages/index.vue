@@ -185,6 +185,8 @@ export default {
             this.totalPrice = 0.00;
             this.totalSalesTax = 0.00;
             this.items = []
+            this.input = "";
+            this.$axios("/deleteBasket");
         },
     }
     ,

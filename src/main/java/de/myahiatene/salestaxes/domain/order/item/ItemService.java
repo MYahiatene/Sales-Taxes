@@ -13,7 +13,7 @@ public interface ItemService {
 
     List<Item> getAllItems();
 
-    Map<Item, Double> createReceipt();
+    void deleteBasket();
 
 
 }
