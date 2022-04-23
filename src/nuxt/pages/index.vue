@@ -1,77 +1,134 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+    <v-app id="inspire">
+        <v-system-bar app>
+            <v-spacer></v-spacer>
+
+        </v-system-bar>
+
+        <v-app-bar app>
+
+            <v-spacer></v-spacer>
+            <v-toolbar-title>Sales Taxes Application</v-toolbar-title>
+            <v-spacer></v-spacer>
+        </v-app-bar>
+        <v-navigation-drawer
+            fixed
+            temporary
+        >
+        </v-navigation-drawer>
+
+        <v-main class="grey lighten-1">
+            <v-container>
+                <v-row>
+                    <template>
+                        <v-col>
+                            <v-card
+                                class="mx-auto"
+                                color="grey lighten-2"
+                                max-width="800"
+                            >
+
+                                <v-list-item three-line>
+                                    <v-list-item-content>
+                                        <v-list-item-title class="text-h3 black--text mb-1">
+                                            Shopping Basket
+                                        </v-list-item-title>
+
+                                    </v-list-item-content>
+                                </v-list-item>
+                                <v-list-item v-for="item in items" :key="item">
+
+                                    <v-list-item-content>
+                                        <div class="text-h5 black--text mb-1">
+                                            {{ item }}
+                                        </div>
+
+                                    </v-list-item-content>
+
+
+                                </v-list-item>
+                                <v-card-actions>
+                                    <v-container fluid>
+                                        <v-form ref="form" v-model="valid">
+                                            <v-text-field id="textField"
+                                                          v-model="input"
+                                                          :rules="inputRules"
+                                                          class="text-h7 black--text mb-1"
+
+                                            ></v-text-field>
+                                        </v-form>
+                                    </v-container>
+                                    <v-btn
+                                        outlined
+                                        rounded
+                                        text
+                                        class="blue-grey"
+
+                                        @click="addItem()"
+                                    >
+                                        Add item to basket
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-col>
+
+                    </template>
+                </v-row>
+            </v-container>
+            <div>
+                <v-snackbar
+                    v-model="snackbar"
+                    :timeout="timeout"
+                >
+                    {{ text }}
+
+                    <template #action="{ attrs }">
+                        <v-btn
+                            color="blue"
+                            text
+                            v-bind="attrs"
+                            @click="snackbar = false"
+                        >
+                            Close
+                        </v-btn>
+                    </template>
+                </v-snackbar>
+            </div>
+        </v-main>
+    </v-app>
 </template>
+
+<script>
+export default {
+    data: () => ({
+        items: [],
+        input: "",
+        valid: false,
+        snackbar: false,
+        timeout: 1500,
+        text: "Error! Wrong Input!",
+        inputRules: [v => v.length > 0, v => v.split(" ").length >= 3, v => Number.isInteger(Number(v.split(" ")[0]))
+
+        ],
+
+    }),
+    methods: {
+        addItem() {
+            if (this.valid) {
+                this.items.push(this.input.replace(" at ", ": "));
+            } else {
+                this.snackbar = true;
+            }
+        }
+        ,
+    }
+    ,
+}
+</script>
+<style>
+#textField {
+    color: black !important;
+
+}
+
+</style>
