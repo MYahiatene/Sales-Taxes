@@ -42,7 +42,7 @@ In the Project root folder type the following command in the terminal:
 ./mvnw spring-boot:run 
 
 ```
-2. Start the frontend server in another terminal(in the root directory of the project folder) as soon as the backend server is started:
+2. Start the frontend server in another terminal(also in the root directory of the project folder) as soon as the backend server has started:
  ```
 npm run dev
 
