@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * Item DTO Class.
+ */
 @Data
 public class ItemDTO {
     private String name;

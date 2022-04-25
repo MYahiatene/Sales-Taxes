@@ -7,11 +7,21 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * Class to initialize Database with default values if necessary.
+ */
 @Service
 public class InitializeDatabaze implements InitializingBean {
+    /**
+     * Itemservice interface to manipulate database.
+     */
+    public final ItemService itemService;
 
-    final ItemService itemService;
-
+    /**
+     * Constructor of InitializeDatabase.
+     *
+     * @param itemService Itemservice for item related methods.
+     */
     @Autowired
     public InitializeDatabaze(final ItemService itemService) {
         this.itemService = itemService;

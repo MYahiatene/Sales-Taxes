@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Item repository.
+ */
 @Repository
 public interface ItemRepository extends JpaRepository<Item, String> {
 

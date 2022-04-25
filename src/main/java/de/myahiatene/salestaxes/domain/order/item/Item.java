@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
+/**
+ * Item entity class.
+ */
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

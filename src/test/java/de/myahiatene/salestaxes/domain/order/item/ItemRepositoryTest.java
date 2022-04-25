@@ -22,10 +22,11 @@ class ItemRepositoryTest {
     @Test
     void checkIfItemFoundByName() {
         //given
-        final Item item = new Item("Buch", 4, false, false, BigDecimal.ONE, null, BigDecimal.TEN);
+        final String name = "Buch";
+        final Item item = new Item(name, 4, false, false, BigDecimal.ONE, null, BigDecimal.TEN);
         itemRepository.save(item);
         //when
-        final Item foundItem = itemRepository.findItemByName("Buch");
+        final Item foundItem = itemRepository.findItemByName(name);
 
         //then
         assertThat(foundItem).isEqualTo(item);
@@ -46,11 +47,12 @@ class ItemRepositoryTest {
     @Test
     void checkIfItemDeleted() {
         //given
-        final Item item = new Item("Buch", 1, false, false, BigDecimal.ONE, null, BigDecimal.TEN);
+        final String name = "Buch";
+        final Item item = new Item(name, 1, false, false, BigDecimal.ONE, null, BigDecimal.TEN);
         itemRepository.save(item);
         //when
-        itemRepository.deleteItemByName("Buch");
-        final Item foundItem = itemRepository.findItemByName("Buch");
+        itemRepository.deleteItemByName(name);
+        final Item foundItem = itemRepository.findItemByName(name);
         //then
         assertThat(foundItem).isNull();
     }

@@ -5,14 +5,19 @@ import de.myahiatene.salestaxes.domain.order.item.Item;
 import de.myahiatene.salestaxes.domain.order.item.ItemServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Restcontroller for interacting with the item repository.
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/v1/api")
 public class ItemController {
-
+    /**
+     * Itemservice to have access to item related methods.
+     */
     public final ItemServiceImpl itemServiceImpl;
 
-    public ItemController(ItemServiceImpl itemServiceImpl) {
+    public ItemController(final ItemServiceImpl itemServiceImpl) {
         this.itemServiceImpl = itemServiceImpl;
     }
 
