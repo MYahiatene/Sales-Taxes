@@ -22,7 +22,9 @@ Write an application that prints out the receipt details for these shopping bask
 - 1 imported bottle of perfume at 27.99
 - 1 bottle of perfume at 18.99
 - 1 packet of headache pills at 9.75
-- 1 box of imported chocolates at 11.25### OUTPUT
+- 1 box of imported chocolates at 11.25
+- 
+### OUTPUT:
 #### Output 1:
 - 1 book: 12.49
 - 1 music CD: 16.49
