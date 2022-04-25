@@ -4,7 +4,7 @@
 
 ## Getting started with Sales-Taxes
 
-### Prerequisites: Linux, Java 11 , Node 16 , Nuxt 2 , Spring Boot ,Maven
+### Prerequisites: Java 11 , Node 16 , Nuxt 2 , Spring Boot ,Maven
 ### Note: The Maven Wrapper should install most dependencies and libraries into the project folder so that you dont have to download above prerequisites manually.
 
 ### To run the App follow the following steps:
