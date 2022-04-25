@@ -32,7 +32,7 @@ Write an application that prints out the receipt details for these shopping bask
 ## Getting started with Sales-Taxes
 
 ### Prerequisites: Linux, Java 11 , Node 16 , Nuxt 2 , Spring Boot 
-### Note: Maven should install most dependencies and libraries into the project folder so that you dont have to download abpve prerequisites manually.
+### Note: Maven should install most dependencies and libraries into the project folder so that you dont have to download above prerequisites manually.
 
 To run the App follow the following steps:
 
