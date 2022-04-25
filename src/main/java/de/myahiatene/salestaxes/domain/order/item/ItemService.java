@@ -7,7 +7,7 @@ import java.util.List;
  * Item service interface.
  */
 public interface ItemService {
-    Item addItem(String name, int amount, boolean basicTax, boolean importTax, BigDecimal price);
+    BasketItem addItem(String name, int amount, boolean basicTax, boolean importTax, BigDecimal price);
 
     BigDecimal calculatePriceWithTax(BigDecimal price, boolean basicTax, boolean importTax);
 

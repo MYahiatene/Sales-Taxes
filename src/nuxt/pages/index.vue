@@ -51,7 +51,7 @@
 
                                     <v-list-item-content v-show="totalSalesTax!==0.00" v-model="totalSalesTax">
                                         <div class="text-h5 black--text mb-1">
-                                            Sales Taxes:{{ totalSalesTax }}
+                                            Sales Taxes: {{ totalSalesTax }}
                                         </div>
 
                                     </v-list-item-content>
@@ -61,7 +61,7 @@
                                 <v-list-item>
                                     <v-list-item-content v-show="totalPrice!==0.00" v-model="totalPrice">
                                         <div class="text-h5 black--text mb-1">
-                                            Total:{{ totalPrice }}
+                                            Total: {{ totalPrice }}
                                         </div>
 
                                     </v-list-item-content>
@@ -135,8 +135,8 @@ export default {
         valid: false,
         snackbar: false,
         timeout: 1500,
-        totalSalesTax: 0.00,
-        totalPrice: 0.00,
+        totalSalesTax: 0,
+        totalPrice: 0,
         basketItem: {},
         text: "Error! Wrong Input!",
         axiosErr: "Something went wrong contacting the Server!",
@@ -170,16 +170,20 @@ export default {
                 const item = {name, amount, basicTax, importTax, price};
                 const response = await this.$axios.post("/addItem", item);
                 const values = response.data;
+                console.log(response);
+                this.totalSalesTax += parseFloat(values.totalSalesTax.toFixed(2));
+                this.totalSalesTax = parseFloat(this.totalSalesTax.toFixed(2));
                 this.items.push(this.createBasketItem(values));
-                this.totalSalesTax = Number(Math.round((this.totalSalesTax + values.amount * values.salesTaxes) + "e2") + "e-2");
-                this.totalPrice = Number(Math.round((this.totalPrice + values.amount * values.priceWithTax) + "e2") + "e-2");
+                this.totalPrice += parseFloat(values.priceWithTax.toFixed(2));
+                this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
+                this.input = "";
             } else {
                 this.snackbar = true;
             }
         },
         createBasketItem(item) {
             const basketItem = `${item.amount} ${item.importTax ? "imported" : ""}
-            ${item.name}: ${item.amount * item.priceWithTax.toFixed(2)}`
+            ${item.name}: ${parseFloat(item.priceWithTax.toFixed(2))}`
             return basketItem;
         }
         ,

@@ -28,13 +28,18 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public Item addItem(final String name, final int amount, final boolean basicTax,
-                        final boolean importTax, final BigDecimal price) {
+    public BasketItem addItem(final String name, final int amount, final boolean basicTax,
+                              final boolean importTax, final BigDecimal price) {
 
         final BigDecimal priceWithTax = calculatePriceWithTax(price, basicTax, importTax);
         final BigDecimal salesTax = priceWithTax.subtract(price);
         final Item item = new Item(name, amount, basicTax, importTax, price, salesTax, priceWithTax);
-        return itemRepository.save(item);
+        itemRepository.save(item);
+        return new BasketItem(item.getName(),
+            item.getAmount(),
+            item.getSalesTaxes().multiply(
+                BigDecimal.valueOf(item.getAmount())).setScale(2, RoundingMode.HALF_UP), item.getPrice(),
+            priceWithTax.multiply(BigDecimal.valueOf(item.getAmount())));
     }
 
     @Override
