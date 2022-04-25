@@ -48,4 +48,4 @@ npm run dev
 
 ```
 
-### Improvements: Add frontend testing to the project, add some integration tests for backend
+### Improvements: Add frontend testing to the project, add some integration tests for backend, add docker + docker compose for easier deployment.
