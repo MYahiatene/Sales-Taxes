@@ -32,7 +32,7 @@ sales tax.
 ### Prerequisites: Linux, Java 11 , Node 16 , Nuxt 2 , Spring Boot 
 ### Note: Maven should install most dependencies and libraries into the project folder so that you dont have to download above prerequisites manually.
 
-To run the App follow the following steps:
+### To run the App follow the following steps:
 
 1. Download all frontend and backend dependencies/files(may take some time, be patient ;)) and start the backend server.
 In the Project root folder type the following command in the terminal:
@@ -46,4 +46,4 @@ npm run dev
 
 ```
 
-### Improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
+Improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
