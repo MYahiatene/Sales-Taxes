@@ -22,7 +22,7 @@ npm run dev
 
 #### The backend server runs on localhost:8088 and the frontend server runs on localhost:3000. Please navigate to localhost:3000 in your preferred browser to open the app.
 
-Improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
+Optional but not mandatory improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
 
 ## SALES TAXES problem description:
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical
