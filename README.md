@@ -9,8 +9,7 @@
 
 ### To run the App follow the following steps:
 
-1. Download all frontend and backend dependencies/files(may take some time, be patient ;)) and start the backend server.
-In the Project root folder type the following command in the terminal:
+1. Maven Wrapper downloads all frontend and backend dependencies/files(may take some time, be patient ;)) into your project folder and starts the backend server. In the Project root folder type the following command in the terminal:
 ```
 ./mvnw spring-boot:run 
 
@@ -20,6 +19,8 @@ In the Project root folder type the following command in the terminal:
 npm run dev
 
 ```
+
+#### The backend server runs on localhost:8088 andt he frontend server runs on localhost:3000. Please navigate to localhost:3000 in your preferred browser to open the app.
 
 Improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
 
