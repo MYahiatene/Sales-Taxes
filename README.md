@@ -20,7 +20,7 @@ npm run dev
 
 ```
 
-#### The backend server runs on localhost:8088 andt he frontend server runs on localhost:3000. Please navigate to localhost:3000 in your preferred browser to open the app.
+#### The backend server runs on localhost:8088 and the frontend server runs on localhost:3000. Please navigate to localhost:3000 in your preferred browser to open the app.
 
 Improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
 
