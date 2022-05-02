@@ -4,25 +4,45 @@
 
 ## Getting started with Sales-Taxes
 
-### Prerequisites: Java 11 , Node 16 , Nuxt 2 , Spring Boot ,Maven
-### Note: The Maven Wrapper should install most dependencies and libraries into the project folder so that you dont have to download above prerequisites manually.
+## With docker and docker compose:
+
+### Prerequisites: docker, docker compose
 
 ### To run the App follow the following steps:
 
-1. Maven Wrapper downloads all frontend and backend dependencies/files(may take some time, be patient ;)) into your project folder and starts the backend server. In the Project root folder type the following command in the terminal:
+1. Navigate into the root directory of the project and issue following command:
 ```
-./mvnw spring-boot:run 
+
+docker-compose --build
 
 ```
-2. Start the frontend server in another terminal(also in the root directory of the project folder) as soon as the backend server has started:
+#### Please navigate to localhost:3000 in your preferred browser to open the app.
+
+## With maven and nodejs:
+
+### Prerequisites: Java 11 , Node 16 , Nuxt 2 , Spring Boot ,Maven
+
+### To run the App follow the following steps:
+
+1. Start the spring boot backend server:
+```
+mvn spring-boot:run 
+
+```
+2. Install the frontend dependencies and start the frontend server:
+Change into the directory src/nuxt and issue following commands: 
+ ```
+npm install
+
+```
+
  ```
 npm run dev
 
 ```
-
 #### The backend server runs on localhost:8088 and the frontend server runs on localhost:3000. Please navigate to localhost:3000 in your preferred browser to open the app.
 
-Optional but not mandatory improvements: Add frontend testing to the project, add more tests for backend, add docker + docker compose for easier deployment.
+Optional but not mandatory improvements: Add frontend testing to the project, add more tests for backend.
 
 ## SALES TAXES problem description:
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical
