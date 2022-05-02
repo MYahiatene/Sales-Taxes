@@ -13,7 +13,7 @@
 1. Navigate into the root directory of the project and issue following command:
 ```
 
-docker-compose --build
+docker-compose up --build
 
 ```
 #### Please navigate to localhost:3000 in your preferred browser to open the app.
