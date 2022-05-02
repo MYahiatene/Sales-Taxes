@@ -2,7 +2,7 @@
 # Sales-Taxes
 ## Sales-Taxes is full stack web app with Nuxt2 frontend + Spring Boot backend with a H2 In Memory Database. The app was tested with junit5 + assertj. 
 
-## _Getting started with Sales-Taxes_
+## Getting started with Sales-Taxes
 
 ### With docker and docker compose:
 
