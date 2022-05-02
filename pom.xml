@@ -701,96 +701,95 @@
                 </executions>
 
             </plugin>
+            <!--
+                        <plugin>
 
-            <plugin>
+                                        <groupId>org.apache.maven.plugins</groupId>
 
-                <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-javadoc-plugin</artifactId>
 
-                <artifactId>maven-javadoc-plugin</artifactId>
+                                    </plugin>
 
-            </plugin>
+                                    <plugin>
 
-            <plugin>
+                                        <groupId>com.github.eirslett</groupId>
 
-                <groupId>com.github.eirslett</groupId>
+                                        <artifactId>frontend-maven-plugin</artifactId>
 
-                <artifactId>frontend-maven-plugin</artifactId>
+                                        <version>${frontendPlugin.version}</version>
 
-                <version>${frontendPlugin.version}</version>
-
-                <executions>
-
-                    <!-- Install our node and npm version to run npm/node scripts-->
-
-                    <execution>
-
-                        <id>install node and npm</id>
-
-                        <goals>
-
-                            <goal>install-node-and-npm</goal>
-
-                        </goals>
-
-                        <configuration>
-
-                            <nodeVersion>${node.version}</nodeVersion>
-
-                        </configuration>
-
-                    </execution>
-
-                    <!-- Install all project dependencies -->
-
-                    <execution>
-
-                        <id>npm install</id>
-
-                        <goals>
-
-                            <goal>npm</goal>
-
-                        </goals>
-
-                        <!-- optional: default phase is "generate-resources" -->
-
-                        <phase>generate-resources</phase>
-
-                        <!-- Optional configuration which provides for running any npm command -->
-
-                        <configuration>
-
-                            <arguments>install</arguments>
+                                        <executions>
 
 
-                        </configuration>
 
-                    </execution>
+                                            <execution>
 
-                    <!-- Build and minify static files -->
+                                                <id>install node and npm</id>
 
-                    <execution>
+                                                <goals>
 
-                        <id>npm run build</id>
+                                                    <goal>install-node-and-npm</goal>
 
-                        <goals>
+                                                </goals>
 
-                            <goal>npm</goal>
+                                                <configuration>
 
-                        </goals>
+                                                    <nodeVersion>${node.version}</nodeVersion>
 
-                        <configuration>
+                                                </configuration>
 
-                            <arguments>run build</arguments>
+                                            </execution>
+
+                                            <execution>
+
+                                                <id>npm install</id>
+
+                                                <goals>
+
+                                                    <goal>npm</goal>
+
+                                                </goals>
 
 
-                        </configuration>
 
-                    </execution>
+                                                <phase>generate-resources</phase>
 
-                </executions>
 
-            </plugin>
+
+                                                <configuration>
+
+                                                    <arguments>install</arguments>
+
+
+                                                </configuration>
+
+                                            </execution>
+
+
+
+                                            <execution>
+
+                                                <id>npm run build</id>
+
+                                                <goals>
+
+                                                    <goal>npm</goal>
+
+                                                </goals>
+
+                                                <configuration>
+
+                                                    <arguments>run build</arguments>
+
+
+                                                </configuration>
+
+                                            </execution>
+
+                                        </executions>
+
+                                    </plugin>
+                                    -->
 
         </plugins>
 

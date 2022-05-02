@@ -147,6 +147,7 @@ export default {
     }),
     created() {
         this.$axios.defaults.baseURL = 'http://localhost:8088/v1/api';
+        this.$axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
     },
     methods: {
         checkIfBasicTax(input) {
